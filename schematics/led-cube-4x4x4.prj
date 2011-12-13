@@ -1,0 +1,3 @@
+elements-dir ./footprints
+schematics led-cube-4x4x4.sch
+output-name led-cube-4x4x4
