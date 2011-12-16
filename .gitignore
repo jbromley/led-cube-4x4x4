@@ -8,3 +8,5 @@
 *.sym
 *.lss
 .dep
+*.backup
+*.pcb-
