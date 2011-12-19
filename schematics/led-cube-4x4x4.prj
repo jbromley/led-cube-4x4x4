@@ -1,3 +1,4 @@
 elements-dir ./footprints
+elements-dir /usr/local/share/pcb/lib/jcl
 schematics led-cube-4x4x4.sch
 output-name led-cube-4x4x4
