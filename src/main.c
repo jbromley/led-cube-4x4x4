@@ -302,15 +302,15 @@ void boot_msg(void)
     for (i = 0; i < 2; i++) {
 	/* blinky */
 	delay_ms(1000);
-	LED_PORT &= ~LED_GREEN;
-	LED_PORT |= LED_RED;
+	led_green(0x00);
+	led_red(0x01);
 	/* blink */
 	delay_ms(1000);
-	LED_PORT &= ~LED_RED;
-	LED_PORT |= LED_GREEN;
+	led_red(0x00);
+	led_green(0x01);
     }
     delay_ms(1000);
-    LED_PORT &= ~LED_GREEN;
+    led_green(0x00);
 }
 
 /* 
