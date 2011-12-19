@@ -42,7 +42,6 @@
 # MCU name
 MCU = atmega16
 
-
 # Processor frequency.
 #     This will define a symbol, F_CPU, in all source code files equal to the 
 #     processor frequency. You can then use this symbol in your source code to 
@@ -53,14 +52,12 @@ F_CPU = 14745600
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
 
-
 # Target file name (without extension).
 TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
 SRC = $(TARGET).c
-
 
 # List Assembler source files here.
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
@@ -71,12 +68,10 @@ SRC = $(TARGET).c
 #     care about how the name is spelled on its command-line.
 ASRC = 
 
-
 # Optimization level, can be [0, 1, 2, 3, s]. 
 #     0 = turn off optimization. s = optimize for size.
 #     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
 OPT = s
-
 
 # Debugging format.
 #     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
@@ -84,13 +79,11 @@ OPT = s
 #     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
 DEBUG = dwarf-2
 
-
 # List any extra directories to look for include files here.
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
 EXTRAINCDIRS = 
-
 
 # Compiler flag to set the C Standard level.
 #     c89   = "ANSI" C
@@ -99,15 +92,11 @@ EXTRAINCDIRS =
 #     gnu99 = c99 plus GCC extensions
 CSTANDARD = -std=gnu99
 
-
 # Place -D or -U options here
 CDEFS = -DF_CPU=$(F_CPU)UL
 
-
 # Place -I options here
 CINCS =
-
-
 
 #---------------- Compiler Options ----------------
 #  -g*:          generate debugging information
@@ -160,9 +149,7 @@ SCANF_LIB =
 #SCANF_LIB = $(SCANF_LIB_MIN)
 #SCANF_LIB = $(SCANF_LIB_FLOAT)
 
-
 MATH_LIB = -lm
-
 
 
 #---------------- External Memory Options ----------------
@@ -177,8 +164,6 @@ MATH_LIB = -lm
 
 EXTMEMOPTS =
 
-
-
 #---------------- Linker Options ----------------
 #  -Wl,...:     tell GCC to pass this to linker.
 #    -Map:      create map file
@@ -187,8 +172,6 @@ LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
 LDFLAGS += $(EXTMEMOPTS)
 LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 
-
-
 #---------------- Programming Options (avrdude) ----------------
 
 # Programming hardware: alf avr910 avrisp bascom bsd 
@@ -196,16 +179,15 @@ LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 #
 # Type: avrdude -c ?
 # to get a full listing.
-AVRDUDE_PROGRAMMER = usbtiny
+AVRDUDE_PROGRAMMER = dragon_isp
 #AVRDUDE_PROGRAMMER = ponyser
 
 # com1 = serial port. Use lpt1 to connect to parallel port.
-#AVRDUDE_PORT = lpt1
+AVRDUDE_PORT = usb
 #AVRDUDE_PORT = COM1
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
-
 
 # Uncomment the following if you want avrdude's erase cycle counter.
 # Note that this counter needs to be initialized first using -Yn,
@@ -225,8 +207,6 @@ AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
 AVRDUDE_FLAGS += $(AVRDUDE_NO_VERIFY)
 AVRDUDE_FLAGS += $(AVRDUDE_VERBOSE)
 AVRDUDE_FLAGS += $(AVRDUDE_ERASE_COUNTER)
-
-
 
 #---------------- Debugging Options ----------------
 
@@ -255,10 +235,7 @@ DEBUG_PORT = 4242
 #     avarice is running on a different computer.
 DEBUG_HOST = localhost
 
-
-
 #============================================================================
-
 
 # Define programs and commands.
 SHELL = sh
@@ -291,28 +268,19 @@ MSG_COMPILING = Compiling:
 MSG_ASSEMBLING = Assembling:
 MSG_CLEANING = Cleaning project:
 
-
-
-
 # Define all object files.
 OBJ = $(SRC:.c=.o) $(ASRC:.S=.o) 
 
 # Define all listing files.
 LST = $(SRC:.c=.lst) $(ASRC:.S=.lst) 
 
-
 # Compiler flags to generate dependency files.
 GENDEPFLAGS = -MD -MP -MF .dep/$(@F).d
-
 
 # Combine all necessary flags and optional flags.
 # Add target processor to flags.
 ALL_CFLAGS = -mmcu=$(MCU) -I. $(CFLAGS) $(GENDEPFLAGS)
 ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
-
-
-
-
 
 # Default target.
 all: begin gccversion sizebefore build sizeafter end
@@ -324,8 +292,6 @@ hex: $(TARGET).hex
 eep: $(TARGET).eep
 lss: $(TARGET).lss 
 sym: $(TARGET).sym
-
-
 
 # Eye candy.
 # AVR Studio 3.x does not check make's exit code but relies on
@@ -379,21 +345,18 @@ ifeq ($(DEBUG_BACKEND),simulavr)
 	@echo load  >> $(GDBINIT_FILE)
 endif	
 	@echo break main >> $(GDBINIT_FILE)
-	
+
 debug: gdb-config $(TARGET).elf
 ifeq ($(DEBUG_BACKEND), avarice)
 	@echo Starting AVaRICE - Press enter when "waiting to connect" message displays.
 	@$(WINSHELL) /c start avarice --jtag $(JTAG_DEV) --erase --program --file \
 	$(TARGET).elf $(DEBUG_HOST):$(DEBUG_PORT)
 	@$(WINSHELL) /c pause
-	
 else
 	@$(WINSHELL) /c start simulavr --gdbserver --device $(MCU) --clock-freq \
 	$(DEBUG_MFREQ) --port $(DEBUG_PORT)
 endif
 	@$(WINSHELL) /c start avr-$(DEBUG_UI) --command=$(GDBINIT_FILE)
-	
-
 
 
 # Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.
@@ -441,8 +404,6 @@ extcoff: $(TARGET).elf
 	@echo $(MSG_SYMBOL_TABLE) $@
 	$(NM) -n $< > $@
 
-
-
 # Link: create ELF output file from object files.
 .SECONDARY : $(TARGET).elf
 .PRECIOUS : $(OBJ)
@@ -450,7 +411,6 @@ extcoff: $(TARGET).elf
 	@echo
 	@echo $(MSG_LINKING) $@
 	$(CC) $(ALL_CFLAGS) $^ --output $@ $(LDFLAGS)
-
 
 # Compile: create object files from C source files.
 %.o : %.c
@@ -474,7 +434,6 @@ extcoff: $(TARGET).elf
 %.i : %.c
 	$(CC) -E -mmcu=$(MCU) -I. $(CFLAGS) $< -o $@ 
 
-
 # Target: clean project.
 clean: begin clean_list end
 
@@ -494,16 +453,10 @@ clean_list :
 	$(REMOVE) $(SRC:.c=.d)
 	$(REMOVE) .dep/*
 
-
-
 # Include the dependency files.
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
-
 
 # Listing of phony targets.
 .PHONY : all begin finish end sizebefore sizeafter gccversion \
 build elf hex eep lss sym coff extcoff \
 clean clean_list program debug gdb-config
-
-
-
