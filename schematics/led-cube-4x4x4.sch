@@ -318,7 +318,7 @@ refdes=R18
 T 44900 43600 5 10 0 1 0 0 1
 footprint=ACY400
 T 45500 43900 5 10 1 1 0 0 1
-value=2k
+value=2.2k
 }
 C 44900 42800 1 0 0 resistor-2.sym
 {
@@ -329,7 +329,7 @@ refdes=R19
 T 44900 42800 5 10 0 1 0 0 1
 footprint=ACY400
 T 45500 43100 5 10 1 1 0 0 1
-value=2k
+value=2.2k
 }
 C 44900 42000 1 0 0 resistor-2.sym
 {
@@ -340,7 +340,7 @@ refdes=R20
 T 44900 42000 5 10 0 1 0 0 1
 footprint=ACY400
 T 45500 42300 5 10 1 1 0 0 1
-value=2k
+value=2.2k
 }
 C 44900 41100 1 0 0 resistor-2.sym
 {
@@ -351,7 +351,7 @@ refdes=R21
 T 44900 41100 5 10 0 1 0 0 1
 footprint=ACY400
 T 45500 41400 5 10 1 1 0 0 1
-value=2k
+value=2.2k
 }
 C 42800 40200 1 0 0 gnd-1.sym
 C 48700 49700 1 0 0 capacitor-1.sym
@@ -393,7 +393,7 @@ T 40300 43000 5 10 1 1 0 0 1
 refdes=CONN3
 T 40300 41400 5 10 1 1 0 0 1
 value=CATHODES
-T 40300 41600 5 10 1 1 0 0 1
+T 40300 41600 5 10 0 1 0 0 1
 footprint=JUMPER4
 }
 N 43400 44200 42000 44200 4
@@ -414,7 +414,7 @@ refdes=R1
 T 51800 47400 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 47600 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 47100 1 0 0 resistor-2.sym
 {
@@ -425,7 +425,7 @@ refdes=R2
 T 53000 47100 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 47300 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 46800 1 0 0 resistor-2.sym
 {
@@ -436,7 +436,7 @@ refdes=R3
 T 51800 46800 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 47000 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 46500 1 0 0 resistor-2.sym
 {
@@ -447,7 +447,7 @@ refdes=R4
 T 53000 46500 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 46700 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 46200 1 0 0 resistor-2.sym
 {
@@ -458,7 +458,7 @@ refdes=R5
 T 51800 46200 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 46400 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 45900 1 0 0 resistor-2.sym
 {
@@ -469,7 +469,7 @@ refdes=R6
 T 53000 45900 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 46100 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 45600 1 0 0 resistor-2.sym
 {
@@ -480,7 +480,7 @@ refdes=R7
 T 51800 45600 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 45800 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 45300 1 0 0 resistor-2.sym
 {
@@ -491,7 +491,7 @@ refdes=R8
 T 53000 45300 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 45500 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 44500 1 0 0 resistor-2.sym
 {
@@ -502,7 +502,7 @@ refdes=R9
 T 51800 44500 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 44700 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 44200 1 0 0 resistor-2.sym
 {
@@ -513,7 +513,7 @@ refdes=R10
 T 53000 44200 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 44400 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 43900 1 0 0 resistor-2.sym
 {
@@ -524,7 +524,7 @@ refdes=R11
 T 51800 43900 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 44100 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 43600 1 0 0 resistor-2.sym
 {
@@ -535,7 +535,7 @@ refdes=R12
 T 53000 43600 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 43800 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 43300 1 0 0 resistor-2.sym
 {
@@ -546,7 +546,7 @@ refdes=R13
 T 51800 43300 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 43500 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 43000 1 0 0 resistor-2.sym
 {
@@ -557,7 +557,7 @@ refdes=R14
 T 53000 43000 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 43200 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 51800 42700 1 0 0 resistor-2.sym
 {
@@ -568,7 +568,7 @@ refdes=R15
 T 51800 42700 5 10 0 1 0 0 1
 footprint=ACY400
 T 52600 42900 5 10 1 1 0 0 1
-value=500
+value=220
 }
 C 53000 42400 1 0 0 resistor-2.sym
 {
@@ -579,7 +579,7 @@ refdes=R16
 T 53000 42400 5 10 0 1 0 0 1
 footprint=ACY400
 T 53800 42600 5 10 1 1 0 0 1
-value=500
+value=220
 }
 N 50400 47500 51800 47500 4
 N 52700 47500 54800 47500 4
@@ -667,7 +667,7 @@ T 56500 47800 5 10 1 1 0 6 1
 refdes=CONN1
 T 55100 47600 5 10 1 1 0 0 1
 value=ANODES
-T 56500 45200 5 10 1 1 0 0 1
+T 56500 45200 5 10 0 1 0 0 1
 footprint=JUMPER8
 }
 C 56500 42300 1 0 1 connector8-1.sym
@@ -678,7 +678,7 @@ T 56400 44900 5 10 1 1 0 6 1
 refdes=CONN2
 T 56700 42100 5 10 1 1 0 6 1
 value=ANODES
-T 56500 42300 5 10 1 1 0 0 1
+T 56500 42300 5 10 0 1 0 0 1
 footprint=JUMPER8
 }
 C 56700 49400 1 0 1 pwrjack-1.sym
@@ -689,7 +689,7 @@ T 56700 49900 5 10 1 1 0 6 1
 refdes=CONN4
 T 56100 49100 5 10 1 1 0 0 1
 value=8-15V in
-T 56700 49400 5 10 1 1 0 0 1
+T 56700 49400 5 10 0 1 0 0 1
 footprint=pj-102
 }
 N 55800 50100 55800 49700 4
