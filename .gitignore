@@ -6,6 +6,7 @@
 *.map
 *.o
 *.sym
+!schematics/symbols/*.sym
 *.lss
 .dep
 *.backup
