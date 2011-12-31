@@ -1,0 +1,32 @@
+[labels]
+LED Cube 4x4x4
+refdes=CUBE?
+! author=J. Bromley
+! device=LED Cube 4x4x4
+! description=4x4x4 LED cube
+! footprint=led-cube-4x4x4
+
+[left]
+1 A0
+2 A1
+3 A2
+4 A3
+5 A4
+6 A5
+7 A6
+8 A7
+9 C0
+10 C1
+11 C2
+12 C3
+13 C4
+14 C5
+15 C6
+16 C7
+
+[right]
+17 L0
+18 L1
+19 L2
+20 L3
+
