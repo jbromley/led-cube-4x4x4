@@ -122,7 +122,7 @@ void launch_effect(int effect)
 	break;
     case 1:
 	/* A pixel bouncing randomly around. */
-	boing_boing(150,500,0x03,0x01);
+	boing_boing(150, 500, 0x03, 0x01);
 	break;
     case 2:
 	/* Randomly fill and empty the cube. */
@@ -145,7 +145,7 @@ void launch_effect(int effect)
 	break;
     case 6:
 	/* Random raindrops */
-	effect_rain(20, 5000, 3000, 500);
+	effect_rain(40, 1000, 500, 500);
 	break;
 		
     case 7:
