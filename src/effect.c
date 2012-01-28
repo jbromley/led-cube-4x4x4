@@ -17,7 +17,7 @@ void blinky2(void);
 void fly_plane(unsigned char plane,unsigned char direction, int delay);
 void load_bar(int delay);
 void random_1(int iterations, int voxels, int delay);
-void random_2(void);
+void random_2(int voxels);
 void random_filler(int iterations, int pixels, int delay, int state);
 void random_filler2(int delay, int state);
 void plane_flip(unsigned char axis1, int pos1, unsigned char axis2, int pos2, 
@@ -26,6 +26,8 @@ void flip_playback(int delay, unsigned char flip_x, unsigned char flip_y,
 		   unsigned char flip_z);
 void boing_boing(uint16_t iterations, int delay, unsigned char mode, 
 		 unsigned char drawmode);
+void random_walk(int walkers, int iterations, int delay);
+
 
 /*
  * Shows an animation of a spinning spiral.
@@ -232,18 +234,18 @@ void random_1(int iterations, int voxels, int delay)
 }
 
 /*
- * Blink a random voxel, blink two random voxels... blink 20 random voxels
+ * Blink a random voxel, blink two random voxels... blink many random voxels
  * and back to 1 again.
  */
-void random_2(void)
+void random_2(int voxels)
 {
     int i;
 	
-    for (i = 1; i < 20; ++i) {
+    for (i = 1; i < voxels; ++i) {
 	random_1(5, i, 500);
     }
 	
-    for (i = 20; i >= 1; --i) {
+    for (i = voxels; i >= 1; --i) {
 	random_1(5, i, 500);
     }
 }
@@ -324,25 +326,28 @@ void load_bar(int delay)
     }
 }
 
-void fly_plane(unsigned char plane,unsigned char direction, int delay)
+void fly_plane(unsigned char plane, unsigned char direction, int delay)
 {
     int i;
     int ii;
+    int iters;
 	
     fill(0x00);
 	
-    for (i = 0; i < 4; ++i) {
+    for (iters = 0; iters < 4; ++iters) {
+      for (i = 0; i < 4; ++i) {
 	ii = (direction != 0 ? 3 - i : i);
 	set_plane(plane, ii, 1);
 	delay_ms(delay);
 	set_plane(plane, ii, 0);
-    }
+      }
 	
-    for (i = 2; i >= 0; --i) {
+      for (i = 2; i >= 0; --i) {
 	ii = direction != 0 ? 3 - i : i;
 	set_plane(plane, ii, 1);
 	delay_ms(delay);
 	set_plane(plane, ii, 0);
+      }
     }
 }
 
@@ -400,6 +405,106 @@ void blinky2(void)
 	    i = i - (15 + (1000 / (i / 10)));
 	}
     }
+}
+
+void random_walk(int walkers, int iterations, int delay)
+{
+  unsigned char x[8];
+  unsigned char y[8];
+  unsigned char z[8];
+
+  int new_x = 0;
+  int new_y = 0;
+  int new_z = 0;
+  int dir;
+  int updated;
+
+  if (walkers > 8) {
+    walkers = 8;
+  } else if (walkers < 1) {
+    walkers = 1;
+  }
+
+  fill(0x00);
+
+  /* Initialize the walkers. */
+  for (int i = 0; i < walkers; ++i) {
+    x[i] = rand() % 4;
+    y[i] = rand() % 4;
+    z[i] = rand() % 4;
+    set_voxel(x[i], y[i], z[i]);
+  }
+  delay_ms(delay);
+
+  for (int iter = 0; iter < iterations; ++iter) {
+    for (int i = 0; i < walkers; ++i) {
+      updated = 0;
+      new_x = x[i];
+      new_y = y[i];
+      new_z = z[i];
+
+      while (updated == 0) {
+	dir = rand() % 6;
+	switch (dir) {
+	case 0:
+	  new_z = z[i] - 1;
+	  if (new_z >= 0) { 
+	    updated = 1; 
+	  } else { 
+	    new_z = z[i]; 
+	  }
+	  break;
+	case 1:
+	  new_z = z[i] + 1;
+	  if (new_z <= 3) { 
+	    updated = 1;
+	  } else {
+	    new_z = z[i];
+	  }
+	  break;
+	case 2:
+	  new_y = y[i] - 1;
+	  if (new_y >= 0) { 
+	    updated = 1;
+	  } else {
+	    new_y = y[i];
+	  }
+	  break;
+	case 3:
+	  new_y = y[i] + 1;
+	  if (new_y <= 3) { 
+	    updated = 1;
+	  } else {
+	    new_y = y[i];
+	  }
+	  break;
+	case 4:
+	  new_x = x[i] - 1;
+	  if (new_x >= 0) { 
+	    updated = 1;
+	  } else {
+	    new_x = x[i];
+	  }
+	  break;
+	case 5:
+	  new_x = x[i] + 1;
+	  if (new_x <= 3) { 
+	    updated = 1;
+	  } else {
+	    new_x = x[i];
+	  }
+	  break;
+	}
+      }
+
+      clear_voxel(x[i], y[i], z[i]);
+      x[i] = new_x;
+      y[i] = new_y;
+      z[i] = new_z;
+      set_voxel(x[i], y[i], z[i]);
+    }
+    delay_ms(delay);
+  }
 }
 
 /*

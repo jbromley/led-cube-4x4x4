@@ -41,6 +41,9 @@
 #define GRID1 PORTC
 #define GRID2 PORTA
 
+/* The number of animations. */
+const int NUM_ANIMATIONS = 14;
+
 void init_io(void);                  /* Initiate IO on the AVR */
 void boot_msg(void);                 /* Blink some leds on boot or reboot. */
 void delay_ms(uint16_t x);           /* Delay function. */
@@ -81,7 +84,7 @@ volatile unsigned char current_layer;
 #include "effect.c"
 
 
-int main (void)
+int main(void)
 {
     int i = 0;
 
@@ -102,7 +105,7 @@ int main (void)
 
     /* Main program loop. */
     while (1) {
-	for (i = 0; i < 13; ++i) {
+	for (i = 0; i < NUM_ANIMATIONS + 1; ++i) {
 	    launch_effect(i);
 	}
 	/* Comment the loop above and uncomment the line below
@@ -158,8 +161,8 @@ void launch_effect(int effect)
 	break;
     case 9:
 	/* Set x number of random voxels, delay, unset them. x increases
-	 * from 1 to 20 and back to 1. */
-	random_2();
+	 * from 1 to 32 and back to 1. */
+	random_2(48);
 	break;
     case 10:
 	/* Set then unset all 64 voxels in a random order. */
@@ -186,6 +189,10 @@ void launch_effect(int effect)
     case 12:
 	/* Fade in and out at low framerate. */
 	blinky2();
+	break;
+    case 13:
+	/* Random walk */
+	random_walk(4, 500, 750);
 	break;
     }
 }
