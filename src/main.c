@@ -42,7 +42,7 @@
 #define GRID2 PORTA
 
 /* The number of animations. */
-const int NUM_ANIMATIONS = 14;
+const int NUM_ANIMATIONS = 15;
 
 void init_io(void);                  /* Initiate IO on the AVR */
 void boot_msg(void);                 /* Blink some leds on boot or reboot. */
@@ -148,7 +148,7 @@ void launch_effect(int effect)
 	break;
     case 6:
 	/* Random raindrops */
-	effect_rain(40, 1000, 500, 500);
+	rain(40, 1000, 500, 500);
 	break;
 		
     case 7:
@@ -157,7 +157,7 @@ void launch_effect(int effect)
 	break;
     case 8:
 	/* Spinning plane */
-	effect_spinning_plane(1, 50, 1000);
+	spinning_plane(1, 50, 1000);
 	break;
     case 9:
 	/* Set x number of random voxels, delay, unset them. x increases
@@ -192,7 +192,11 @@ void launch_effect(int effect)
 	break;
     case 13:
 	/* Random walk */
-	random_walk(4, 500, 750);
+	random_walk(4, 500, 1000);
+	break;
+    case 14:
+	/* Spinning square */
+	spinning_square(1, 50, 1000);
 	break;
     }
 }

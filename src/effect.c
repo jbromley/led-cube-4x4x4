@@ -8,8 +8,9 @@
  */
 
 void effect_spiral(int direction, int iterations, int delay);
-void effect_spinning_plane(int direction, int iterations, int delay);
-void effect_rain(int iterations, int delay, int hold, int speed);
+void spinning_plane(int direction, int iterations, int delay);
+void spinning_square(int direction, int iterations, int delay);
+void rain(int iterations, int delay, int hold, int speed);
 void send_voxel_z(unsigned char x, unsigned char y, unsigned char z, int delay);
 void send_plane_rand_z(unsigned char z, int delay, int wait);
 void blinky(void);
@@ -57,7 +58,7 @@ void effect_spiral(int direction, int iterations, int delay)
 /*
  * Shows an animation of a spinning plane.
  */
-void effect_spinning_plane(int direction, int iterations, int delay)
+void spinning_plane(int direction, int iterations, int delay)
 {
     int i;
     int z;
@@ -75,9 +76,34 @@ void effect_spinning_plane(int direction, int iterations, int delay)
 }
 
 /*
+ * Shows an animation of a spinning square.
+ */
+void spinning_square(int direction, int iterations, int delay)
+{
+    int i;
+    int z;
+
+    for (i = 0; i < iterations; ++i) {
+	/* Loop cube levels. */
+	for (z = 0; z < 4; ++z) {
+	    cube[z][0] = (pgm_read_byte(&spinning_line[(i) % 6][0]) >> 4);
+	    cube[z][1] = pgm_read_byte(&spinning_line[(i) % 6][0]);
+	    cube[z][2] = (pgm_read_byte(&spinning_line[(i) % 6][1]) >> 4);
+	    if (z == 1 || z == 2) {
+	      cube[z][1] &= 0x09;
+	      cube[z][2] &= 0x09;
+	    }
+	    cube[z][3] = pgm_read_byte(&spinning_line[(i) % 6][1]);
+	}
+	delay_ms(delay);
+    }
+}
+
+
+/*
  * Random voxels light up at the top layer and falls to the bottom layer.
  */
-void effect_rain(int iterations, int delay, int hold, int speed)
+void rain(int iterations, int delay, int hold, int speed)
 {
     int i;
     int p;  /* Position of the raindrop on z. */
