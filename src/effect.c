@@ -7,7 +7,7 @@
  * Graphic effects
  */
 
-void effect_spiral(int direction, int iterations, int delay);
+void spiral(int direction, int iterations, int delay);
 void spinning_plane(int direction, int iterations, int delay);
 void spinning_square(int direction, int iterations, int delay);
 void rain(int iterations, int delay, int hold, int speed);
@@ -33,7 +33,7 @@ void random_walk(int walkers, int iterations, int delay);
 /*
  * Shows an animation of a spinning spiral.
  */
-void effect_spiral(int direction, int iterations, int delay)
+void spiral(int direction, int iterations, int delay)
 {
     int i;
     int z;

@@ -139,7 +139,7 @@ void launch_effect(int effect)
 	break;
     case 4:
 	/* Spinning spiral */
-	effect_spiral(1, 75, 1000);
+	spiral(1, 75, 1000);
 	break;
     case 5:
 	/* A coordinate bounces randomly around the cube. For every position
@@ -192,7 +192,7 @@ void launch_effect(int effect)
 	break;
     case 13:
 	/* Random walk */
-	random_walk(4, 500, 1000);
+	random_walk(4, 250, 1000);
 	break;
     case 14:
 	/* Spinning square */
